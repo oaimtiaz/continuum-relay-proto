@@ -1,0 +1,10 @@
+# buf.gen.yaml
+#
+# NOTE: Rust code generation is handled by tonic-build at cargo build time.
+# This file exists for potential future use with buf generate, or for
+# generating code in other languages.
+#
+# To generate Rust code, simply run: cargo build
+
+version: v2
+plugins: []

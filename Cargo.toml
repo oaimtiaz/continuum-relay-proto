@@ -1,0 +1,15 @@
+[package]
+name = "continuum-relay-proto"
+version = "0.1.0"
+edition = "2021"
+description = "Protocol Buffer definitions for Continuum Relay"
+license = "MIT"
+
+[dependencies]
+prost = "0.12"
+prost-types = "0.12"
+tonic = { version = "0.11", features = ["transport"] }
+
+[build-dependencies]
+tonic-build = "0.11"
+prost-build = "0.12"
