@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package continuum.relay.v1;
+
+import "relay/v1/tunnel.proto";
+
+service ClientRelayService {
+  rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+  rpc Tunnel(stream TunnelMessage) returns (stream TunnelMessage);
+}
+
+
+message CreateSessionRequest {
+  string daemon_id = 1;
+}
+
+message CreateSessionResponse {
+    string session_id = 2;
+    string client_token = 3;
+    int64 expires_unix_millis = 5;
+}
+

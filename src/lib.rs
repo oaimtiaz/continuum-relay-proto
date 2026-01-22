@@ -12,12 +12,12 @@ pub mod relay {
     }
 }
 
-// Re-export commonly used types at crate root for convenience
-pub use relay::v1::{
-    // Message types
-    envelope, Close, Data, Envelope, OpenTunnel, Register, TunnelAccepted, TunnelRejected,
-    // Client
-    relay_service_client::RelayServiceClient,
-    // Server trait and wrapper
-    relay_service_server::{RelayService, RelayServiceServer},
-};
+// // Re-export commonly used types at crate root for convenience
+// pub use relay::v1::{
+//     // Message types
+//     envelope, Close, Data, Envelope, OpenTunnel, Register, TunnelAccepted, TunnelRejected,
+//     // Client
+//     relay_service_client::RelayServiceClient,
+//     // Server trait and wrapper
+//     relay_service_server::{RelayService, RelayServiceServer},
+// };

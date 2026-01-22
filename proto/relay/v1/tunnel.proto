@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package continuum.relay.v1;
+
+message TunnelMessage {
+  oneof msg {
+    Open open = 1;
+    Close close = 2;
+    Data data = 3;
+  }
+}
+
+message Open {
+  string session_id = 1;
+  string token = 2;
+}
+
+message Close {
+  string reason = 2;
+}
+
+message Data {
+  bytes data = 1;
+  bool fin = 2;
+}

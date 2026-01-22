@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package continuum.relay.v1;
+
+import "relay/v1/tunnel.proto";
+
+// DaemonRelayService provides bidirectional streaming for relay tunnel communication.
+service DaemonRelayService {
+  // Register establishes a bidirectional stream for command communication.
+  rpc Register(stream Envelope) returns (stream Envelope);
+  rpc Tunnel(stream TunnelMessage) returns (stream TunnelMessage);
+}
+
+
+message Envelope {
+  oneof msg {
+    Ping ping = 1;
+    Pong pong = 2;
+    StartSession start_tunnel = 3; // command from the relay to the daemon
+    SessionAccepted accepted = 4;
+    SessionRejected rejected = 5;
+    CloseSession close_session = 6;
+  }
+}
+
+message Ping {
+  uint64 seq = 1;
+  uint64 sent_unix_millis = 2;
+}
+
+message Pong {
+  uint64 seq = 1;
+  uint64 received_unix_millis = 2;
+}
+
+enum Target {
+  TARGET_UNSPECIFIED = 0;
+  ENROLLMENT = 1;
+  MAIN = 2;
+}
+
+// StartSession requests a new tunnel to a specific daemon.
+message StartSession {
+  string session_id = 1;
+  string daemon_token = 2;
+  string tunnel_address = 3;
+  Target target = 4;
+}
+
+
+// SessionAccepted confirms that the daemon accepted the session request.
+message SessionAccepted {
+  string session_id = 1;
+}
+
+// SessionRejected indicates the daemon rejected the session request.
+message SessionRejected {
+  string session_id = 1;
+  string reason = 2;
+}
+
+// Close terminates a session.
+message CloseSession {
+  string session_id = 1;
+  string reason = 2;
+}
