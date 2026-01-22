@@ -12,12 +12,19 @@ pub mod relay {
     }
 }
 
-// // Re-export commonly used types at crate root for convenience
-// pub use relay::v1::{
-//     // Message types
-//     envelope, Close, Data, Envelope, OpenTunnel, Register, TunnelAccepted, TunnelRejected,
-//     // Client
-//     relay_service_client::RelayServiceClient,
-//     // Server trait and wrapper
-//     relay_service_server::{RelayService, RelayServiceServer},
-// };
+// Re-export commonly used types at crate root for convenience
+pub use relay::v1::{
+    // Daemon service
+    daemon_relay_service_client::DaemonRelayServiceClient,
+    daemon_relay_service_server::{DaemonRelayService, DaemonRelayServiceServer},
+    // Client service
+    client_relay_service_client::ClientRelayServiceClient,
+    client_relay_service_server::{ClientRelayService, ClientRelayServiceServer},
+    // Daemon envelope messages
+    envelope, CloseSession, Envelope, Ping, Pong, SessionAccepted, SessionRejected, StartSession,
+    Target,
+    // Client messages
+    CreateSessionRequest, CreateSessionResponse,
+    // Tunnel messages
+    tunnel_message, Close, Data, Open, TunnelMessage,
+};

@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .build_server(true)
         .build_client(true)
         .build_transport(true)
-        .compile(
+        .compile_protos(
             &["proto/relay/v1/client.proto", "proto/relay/v1/daemon.proto"],
             &["proto/"],
         )?;
